@@ -147,19 +147,32 @@
 		<p class="text-center text-white text-sm">OG Creator <a
 			href="t.me/D_audacious_commoner">@ShikharShukla</a></p>
 	  </div>
-	<audio autoplay muted loop id="bg-music">
+	<audio id="bg-music" autoplay muted loop>
   <source src="https://www.zedge.net/ringtones/d3cded94-0f1b-4201-b73a-c6f52018d35b" type="audio/mp3">
   Your browser does not support the audio element.
 </audio>
+
 <script>
-  const audioEl = document.getElementById("bg-music");
-  const enableAudio = () => {
-    audioEl.muted = false;
-    window.removeEventListener("click", enableAudio);
-    window.removeEventListener("mousemove", enableAudio);
+  const audio = document.getElementById("bg-music");
+
+  // Try to play muted (most browsers allow this)
+  window.addEventListener("DOMContentLoaded", () => {
+    audio.muted = true;
+    audio.play().catch(() => {});
+  });
+
+  // Unmute on user interaction
+  const unmute = () => {
+    audio.muted = false;
+    audio.play().catch(() => {});
+    window.removeEventListener("click", unmute);
+    window.removeEventListener("mousemove", unmute);
+    window.removeEventListener("touchstart", unmute);
   };
-  window.addEventListener("click", enableAudio);
-  window.addEventListener("mousemove", enableAudio);
+
+  window.addEventListener("click", unmute);
+  window.addEventListener("mousemove", unmute);
+  window.addEventListener("touchstart", unmute);
 </script>
 </body>
 <script>
