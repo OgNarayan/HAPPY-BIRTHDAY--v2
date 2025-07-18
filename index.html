@@ -147,6 +147,20 @@
 		<p class="text-center text-white text-sm">OG Creator <a
 			href="t.me/D_audacious_commoner">@ShikharShukla</a></p>
 	  </div>
+	<audio autoplay muted loop id="bg-music">
+  <source src="https://www.zedge.net/ringtones/d3cded94-0f1b-4201-b73a-c6f52018d35b" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+<script>
+  const audioEl = document.getElementById("bg-music");
+  const enableAudio = () => {
+    audioEl.muted = false;
+    window.removeEventListener("click", enableAudio);
+    window.removeEventListener("mousemove", enableAudio);
+  };
+  window.addEventListener("click", enableAudio);
+  window.addEventListener("mousemove", enableAudio);
+</script>
 </body>
 <script>
     let datetxt = "19 July";
