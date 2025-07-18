@@ -154,10 +154,10 @@
 		<p class="text-center text-white text-sm">OG Creator <a
 			href="t.me/D_audacious_commoner">@ShikharShukla</a></p>
 	  </div>
-<audio id="bg-music" preload="auto" playsinline loop>
-  <source src="audio/bg-music.mp3" type="audio/mp3" />
+ <audio id="bg-music" preload="auto" playsinline loop>
+  <source src="audio/bg-music.mp3" type="audio/mp3">
   Your browser does not support the audio element.
-</audio>
+ </audio>
 
 <script>
   const overlay = document.getElementById("start-overlay");
@@ -166,12 +166,17 @@
   const startExperience = () => {
     overlay.style.opacity = '0';
     setTimeout(() => overlay.style.display = 'none', 1000);
-    audio.play().catch((e) => console.error("Audio failed:", e));
+
+    // Attempt to play the music after user interaction
+    audio.play().catch((err) => {
+      console.error("Audio autoplay failed:", err);
+    });
 
     window.removeEventListener("click", startExperience);
     window.removeEventListener("touchstart", startExperience);
   };
 
+  // Require a tap to start music on mobile
   window.addEventListener("click", startExperience);
   window.addEventListener("touchstart", startExperience);
 </script>
